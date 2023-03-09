@@ -26,6 +26,7 @@ enum
 };
 
 uint8_t state;
+uint8_t prev_state;
 
 uint8_t blink_state;
 uint16_t blink_count;
@@ -63,6 +64,7 @@ bool timerCallback(struct repeating_timer *t)
 void init()
 {
     state = DispStateNormal;
+    prev_state = DispStateNormal;
     blink_state = 0;
     blink_count = 0;
     ap = alarm_pool_create(0, 4);
@@ -85,7 +87,7 @@ void setState(uint8_t s)
     {
         if (state != s)
         {
-            blink_state = 0;
+            blink_state = 1;
             blink_count = 0;
         }
     }
@@ -93,6 +95,7 @@ void setState(uint8_t s)
     {
         blink_state = 1;
     }
+    prev_state = state;
     state = s;
 }
 
@@ -106,7 +109,6 @@ void update()
     }
 
     elapsed = false;
-    gpio_put(GPIO_T1, true);
     graphics::clear();
 
     bool changed_blink = false;
@@ -132,11 +134,13 @@ void update()
     prev_m = m;
     prev_s = s;
 
-    if (!changed_time && !changed_blink)
+    if (!changed_time && !changed_blink && (prev_state == state))
     {
         return;
     }
+    prev_state = state;
 
+    // gpio_put(GPIO_T1, true);
     // printf("%dm %ds\n", m, s);
     char buf[5];
     std::memset(buf, 0, sizeof(buf));
@@ -150,7 +154,7 @@ void update()
 
     // oled::transmit();
     oled::transmitDma();
-    gpio_put(GPIO_T1, false);
+    // gpio_put(GPIO_T1, false);
 
     return;
 }

@@ -9,6 +9,7 @@
 #include "alarm-sound.h"
 #include "pico/stdlib.h"
 #include "hardware/timer.h"
+#include "display.h"
 
 #define GPIO_T2 (17)
 
@@ -82,6 +83,7 @@ void addTarget10s()
     if (state == CountReset)
     {
         state = CountSetting;
+        display::setState(display::DispStateBlink);
     }
     else if (CountDown <= state)
     {
@@ -96,6 +98,7 @@ void addTarget1m()
     if (state == CountReset)
     {
         state = CountSetting;
+        display::setState(display::DispStateBlink);
     }
     else if (CountDown <= state)
     {
@@ -109,6 +112,7 @@ void addTarget10m()
     if (state == CountReset)
     {
         state = CountSetting;
+        display::setState(display::DispStateBlink);
     }
     else if (CountDown <= state)
     {
@@ -139,6 +143,8 @@ void startCount()
     }
 
     add_repeating_timer_ms(-100, timerCallback, nullptr, &timer);
+    display::setState(display::DispStateNormal);
+
 }
 
 void stop()
