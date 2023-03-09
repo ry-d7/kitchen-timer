@@ -18,7 +18,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(kitchen-timer kitchen-timer.cpp oled.cpp Graphics.cpp dots-mono.cpp fortimer_small.cpp alarm-counter.cpp alarm-sound.cpp display.cpp switches.cpp)
+add_executable(kitchen-timer kitchen-timer.cpp oled.cpp Graphics.cpp dots-mono.cpp fortimer_small.cpp fortimer_large.cpp fortimer_large_long.cpp alarm-counter.cpp alarm-sound.cpp display.cpp switches.cpp)
 
 pico_set_program_name(kitchen-timer "kitchen-timer")
 pico_set_program_version(kitchen-timer "0.1")

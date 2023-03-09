@@ -145,10 +145,12 @@ void update()
     char buf[5];
     std::memset(buf, 0, sizeof(buf));
     std::sprintf(buf, "%02d", m);
-    graphics::drawString(std::string(buf), Font_fortimer_small, 1, 4);
+    graphics::drawString(std::string(buf), Font_fortimer_large_long, 0, 1);
+    graphics::drawString(std::string("M"), Font_fortimer_small, 40, 30);
     std::memset(buf, 0, sizeof(buf));
     std::sprintf(buf, "%02d", s);
-    graphics::drawString(std::string(buf), Font_fortimer_small, 64, 4);
+    graphics::drawString(std::string(buf), Font_fortimer_large_long, 64, 1);
+    graphics::drawString(std::string("S"), Font_fortimer_small, 104, 30);
 
     graphics::setToDispBuffer();
 

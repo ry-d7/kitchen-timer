@@ -444,6 +444,7 @@ const Glyph Glyph_char76 = {
     (uint8_t*)Bmp_char76,
 };
 const uint8_t Bmp_char77[] = {
+0x81,
 0xC3,
 0xA5,
 0xA5,
@@ -451,7 +452,6 @@ const uint8_t Bmp_char77[] = {
 0x99,
 0x99,
 0x99,
-0x81,
 0x81,
 0x81,
 0x81,
